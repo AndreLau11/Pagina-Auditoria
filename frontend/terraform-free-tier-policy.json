@@ -1,0 +1,35 @@
+﻿{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "FreeTierServices",
+            "Effect": "Allow",
+            "Action": [
+                "s3:*",
+                "lambda:*",
+                "apigateway:*",
+                "dynamodb:*",
+                "cloudfront:*",
+                "iam:*",
+                "logs:*",
+                "cloudformation:*",
+                "sts:*"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:RequestedRegion": "us-east-1"
+                }
+            }
+        },
+        {
+            "Sid": "BudgetAlert",
+            "Effect": "Allow",
+            "Action": [
+                "budgets:*",
+                "ce:*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}

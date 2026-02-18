@@ -1,0 +1,52 @@
+{
+  "name": "auditor-iva-sat",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "setup": "npm install --legacy-peer-deps"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.18.0",
+    "@mui/material": "^5.18.0",
+    "@mui/x-data-grid": "^6.20.4",
+    "@tanstack/react-query": "^5.90.16",
+    "@types/file-saver": "^2.0.7",
+    "@types/xlsx": "^0.0.35",
+    "axios": "^1.13.2",
+    "date-fns": "^2.30.0",
+    "file-saver": "^2.0.5",
+    "formik": "^2.4.9",
+    "lodash": "^4.17.21",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-dropzone": "^14.3.8",
+    "react-hot-toast": "^2.4.1",
+    "react-router-dom": "^6.15.0",
+    "xlsx": "^0.18.5",
+    "yup": "^1.7.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/lodash": "^4.14.197",
+    "@types/node": "^24.10.1",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.7",
+    "@types/react-dropzone": "^4.2.2",
+    "@types/react-router-dom": "^5.3.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.46.4",
+    "vite": "^7.2.4"
+  }
+}

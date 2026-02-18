@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auditor IVA SAT</title>
+    
+    <!-- IMPORTANTE: Base para rutas relativas -->
+    <base href="/">
+  </head>
+  <body>
+    <!-- ⚠️ ⚠️ ⚠️ ESTA LÍNEA ES CRÍTICA ⚠️ ⚠️ ⚠️ -->
+    <div id="root"></div>
+    <!-- ⚠️ ⚠️ ⚠️ SIN ESTO, REACT NO FUNCIONA ⚠️ ⚠️ ⚠️ -->
+    
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Script de diagnóstico -->
+    <script>
+      // Verificar que el div#root existe
+      if (!document.getElementById('root')) {
+        console.error('❌ ERROR CRÍTICO: No se encontró <div id="root">');
+        document.body.innerHTML = `
+          <div style="
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: #dc2626;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+          ">
+            <h1 style="font-size: 48px; margin-bottom: 20px;">❌ ERROR GRAVE</h1>
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; max-width: 800px;">
+              <h2>Falta el elemento <code>&lt;div id="root"&gt;</code></h2>
+              <p style="margin: 20px 0; line-height: 1.6; font-size: 18px;">
+                React necesita un elemento con id="root" para funcionar.
+              </p>
+              <div style="background: black; padding: 20px; border-radius: 5px; margin: 20px 0; text-align: left;">
+                <code style="color: #00ff00; font-size: 16px;">
+                  &lt;div id="root"&gt;&lt;/div&gt;
+                </code>
+              </div>
+              <p>Añade esa línea en tu archivo <strong>index.html</strong> dentro de <code>&lt;body&gt;</code>.</p>
+              <button onclick="window.location.reload()" 
+                      style="
+                        background: white;
+                        color: #dc2626;
+                        border: none;
+                        padding: 15px 30px;
+                        font-size: 18px;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        margin-top: 20px;
+                        font-weight: bold;
+                      ">
+                🔄 Recargar después de corregir
+              </button>
+            </div>
+          </div>
+        `;
+      } else {
+        console.log('✅ Elemento <div id="root"> encontrado');
+      }
+    </script>
+  </body>
+</html>
