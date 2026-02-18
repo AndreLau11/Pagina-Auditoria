@@ -1,56 +1,39 @@
 name: Desplegar a GitHub Pages
 
 on:
-  # Se ejecuta cuando hay un 'push' a la rama 'main'
   push:
     branches: ["main"]
 
-  # Te permite ejecutar este workflow manualmente desde la pestaña Actions
-  workflow_dispatch:
-
-# Establece los permisos del token GITHUB para permitir el despliegue en GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Permite solo una despliegue concurrente
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
-  # Trabajo de construcción
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout del repositorio
-        uses: actions/checkout@v4
-
-      # - name: Configurar Node.js (EJEMPLO si usas un proyecto Node)
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: '20'
-      # - name: Instalar dependencias y construir
-      #   run: |
-      #     npm install
-      #     npm run build
-
-      - name: Subir artefacto (la carpeta con tu sitio construido)
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # ¡CAMBIA ESTO! Es la carpeta donde se genera tu sitio.
-          # Si tu sitio es solo HTML plano, pon '.' (la raíz)
-          path: '.' 
-
-  # Trabajo de despliegue
-  deploy:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
     steps:
-      - name: Desplegar en GitHub Pages
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Construir
+        run: npm run build   # Esto genera la carpeta 'build' o 'dist'
+
+      - name: Subir artefacto
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './build'   # <-- Cambia a la carpeta que genere tu build
+
+      - name: Desplegar
         id: deployment
         uses: actions/deploy-pages@v4
